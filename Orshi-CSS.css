@@ -26,15 +26,19 @@
     margin: 0;
     padding: 0;
     width: 200px;
-    background-color: #f1f1f1;
+    background-color: white;
 }
 li a {
     display: block;
-    color: #000;
+    color: royalblue;
     padding: 8px 0 8px 16px;
     text-decoration: none;
 }
 li a:hover {
     background-color: #555;
+    color: white;
+}
+#not_menu{
+    background-color: white;
     color: white;
 }
