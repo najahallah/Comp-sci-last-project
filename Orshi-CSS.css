@@ -16,6 +16,7 @@
     font-family: fantasy;
     font-size: 20px;
 }
+<<<<<<< Updated upstream
 #main_menu{
     position: fixed;
     list-style-type: none;
@@ -43,3 +44,6 @@ li a:hover {
     background-color: white;
     color: white;
 }
+=======
+
+>>>>>>> Stashed changes
