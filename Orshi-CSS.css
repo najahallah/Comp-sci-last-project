@@ -86,3 +86,8 @@ li a:hover {
     opacity: 1;
     right: 0;
 }
+
+#button {
+    color:#FFFFFF;
+    text-decoration: none;
+}
