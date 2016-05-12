@@ -1,10 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src=" "></script>
     <meta charset="UTF-8">
-    <title></title>
+    <link rel="stylesheet" type="text/css" href="Orshi-CSS.css">
+    <title>Pin Code</title>
 </head>
 <body>
+<p>Click the button to display your pin number.</p>
 
+<button onclick="myFunction()">Pin Code</button>
+
+<p id="demo"></p>
+
+<script action="http://localhost:63342/Comp-sci-last-project/dude.html">
+    function myFunction() {
+        var x = Math.floor((Math.random() * 10000));
+        if(x <= 999)
+            return myFunction();
+
+        document.getElementById("demo").innerHTML = x;
+    }
+</script>
+<div>
+
+</div>
+</form>
 </body>
 </html>
