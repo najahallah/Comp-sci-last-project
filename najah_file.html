@@ -1,90 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src=" "></script>
     <meta charset="UTF-8">
     <title></title>
-</head>
-<body>
-<script id="cake">
+
+<script>
+
+
+    var db2 = "hi";
 
     var db = [{
-        "name": "Orshi",
-        "pin": "1234",
-        "target":{"targetName": "Tuul",
-            "targetPin":"2345"},
+            "name": "Orshi",
+            "pin": "1234",
+            "target":{"targetName": "Tuul",
+                "targetPin":"2345"}
+        },
 
-        "name": "Tuul",
-        "pin": "2345",
-        "target":{"targetName": "Christina",
-            "targetPin":"3456"},
+        {
+            "name": "Tuul",
+            "pin": "2345",
+            "target":{"targetName": "Christina",
+            "targetPin":"3456"}
+        },
 
-        "name": "Christina",
-        "pin": "3456",
-        "target":{"targetName": "Najah",
-            "targetPin":"5678"},
+        {
+            "name": "Christina",
+            "pin": "3456",
+            "target":{"targetName": "Najah",
+            "targetPin":"5678"}
+        },
 
-        "name": "Najah",
-        "pin": "5678",
-        "target":{"targetName": "Kelsey",
-            "targetPin":"6789"},
+        {
+            "name": "Najah",
+            "pin": "5678",
+            "target":{"targetName": "Kelsey",
+            "targetPin":"6789"}
+        },
 
-        "name": "Kelsey",
-        "pin": "6789",
-        "target":{"targetName": "Orshi",
-            "targetPin":"1234"},
+        {
+            "name": "Kelsey",
+            "pin": "6789",
+            "target":{"targetName": "Orshi",
+            "targetPin":"1234"}
     }]
-    document.getElementById("cake").innerHTML=(db.target.targetName);
+
+    function myFunction() {
+        var x = document.getElementById("puff")
+        x.innerHTML = db[3].target.targetName;
+
+        //write a for loop that displays all of the target names
+        //loop through, build a string (+=) set innerHTML to string
+
+        // x += name
+
+
+    }
 </script>
-<style>
-    .button {
-        display: inline-block;
-        border-radius: 4px;
-        background-color: #004d99;
-        border: none;
-        color: #FFFFFF;
-        text-align: center;
-        font-size: 28px;
-        padding: 20px;
-        width: 200px;
-        transition: all 0.5s;
-        cursor: pointer;
-        margin: auto;
-        text-align: center;
-    }
 
-    .button span {
-        cursor: pointer;
-        display: inline-block;
-        position: relative;
-        transition: 0.5s;
-    }
-
-    .button span:after {
-        content: '»';
-        position: absolute;
-        opacity: 0;
-        top: 0;
-        right: -20px;
-        transition: 0.5s;
-    }
-
-    .button:hover span {
-        padding-right: 25px;
-    }
-
-    .button:hover span:after {
-        opacity: 1;
-        right: 0;
-    }
-</style>
 </head>
 <body>
 
+<button onclick="myFunction()">Try it</button>
 
-<button class="button" style="vertical-align:middle"><span>Play </span></button>
-<div></div>
-</form>
+<div id="puff"></div>
+
+
+
 </body>
 </html>
 
