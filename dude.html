@@ -7,34 +7,20 @@
     <title>Dashboard</title>
 </head>
 <body>
-<script id="cake">
+<p>Click the button to display your pin number.</p>
 
-    var db = [{
-        "name": "Orshi",
-        "pin": "1234",
-        "target":{"targetName": "Tuul",
-            "targetPin":"2345"},
+<button onclick="myFunction()">Pin Code</button>
 
-        "name": "Tuul",
-        "pin": "2345",
-        "target":{"targetName": "Christina",
-            "targetPin":"3456"},
+<p id="demo"></p>
 
-        "name": "Christina",
-        "pin": "3456",
-        "target":{"targetName": "Najah",
-            "targetPin":"5678"},
+<script>
+    function myFunction() {
+        var x = Math.floor((Math.random() * 10000));
+        if(x <= 999)
+            return myFunction();
 
-        "name": "Najah",
-        "pin": "5678",
-        "target":{"targetName": "Kelsey",
-            "targetPin":"6789"},
-
-        "name": "Kelsey",
-        "pin": "6789",
-        "target":{"targetName": "Orshi",
-            "targetPin":"1234"},
-    }]
+        document.getElementById("demo").innerHTML = x;
+    }
 </script>
 <div>
 
