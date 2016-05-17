@@ -46,7 +46,11 @@
 
     function myFunction() {
         var x = document.getElementById("puff")
-        x.innerHTML = db[3].target.targetName;
+        if (name === "Orshi") {
+            x.innerHTML = db[0].target.targetName
+        }
+
+
 
 
         //write a for loop that displays all of the target names
