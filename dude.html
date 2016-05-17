@@ -1,17 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src=" "></script>
+    <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="Orshi-CSS.css">
-    <title>Dashboard</title>
+    <title>Database</title>
 </head>
 <body>
-<script>
-</script>
+<<<<<<< HEAD
+<scrip47t>
+</scrip47t>
 <div>
+=======
+<script>
 
-</div>
-</form>
+    var myFirebaseRef = new Firebase("https://torrid-torch-6223.firebaseIO.com");
+    myFirebaseRef.set({
+
+        "name": "Orshi",
+        "pin": "1234",
+        "target":{"targetName": "Tuul",
+            "targetPin":"2345"}
+    },
+
+    {
+        "name": "Tuul",
+        "pin": "2345",
+        "target":{"targetName": "Christina",
+            "targetPin":"3456"}
+    },
+
+    {
+        "name": "Christina",
+        "pin": "3456",
+        "target":{"targetName": "Najah",
+            "targetPin":"5678"}
+    },
+
+    {
+        "name": "Najah",
+        "pin": "5678",
+        "target":{"targetName": "Kelsey",
+            "targetPin":"6789"}
+    },
+
+    {
+        "name": "Kelsey",
+        "pin": "6789",
+        "target":{"targetName": "Orshi",
+            "targetPin":"1234"}
+    });
+    myFirebaseRef.child("location/city").on("value", function(snapshot) {
+        alert(snapshot.val());  // Alerts "San Francisco"
+        document.getElementById("cake").innerHTML = snapshot.val();
+
+    });
+    document.getElementById("cake").innerHTML = "hiiiii";
+</script>
+>>>>>>> origin/master
+
+<div id="cake">hi</div>
 </body>
 </html>
+---------------------------
