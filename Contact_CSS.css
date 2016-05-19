@@ -58,6 +58,10 @@ td{
     background-color: white;
     text-align: center;
 }
+#table {
+    margin: auto;
+    background-color: white;
+}
 /*#sub-title {
     text-align: center;
     color: lightgray;

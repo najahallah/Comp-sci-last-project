@@ -49,3 +49,7 @@ td{
     background-color: white;
     text-align: center;
 }
+#table {
+    margin: auto;
+    background-color: white;
+}
