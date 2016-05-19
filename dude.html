@@ -1,65 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="Orshi-CSS.css">
-    <title>Database</title>
-</head>
+<html>
 <body>
-<<<<<<< HEAD
-<scrip47t>
-</scrip47t>
-<div>
-=======
+
+<p>Click to get your new target.</p>
+
+<button onclick="myFunction()">Try it</button>
+
+<p id="demo"></p>
+
 <script>
 
-    var myFirebaseRef = new Firebase("https://torrid-torch-6223.firebaseIO.com");
-    myFirebaseRef.set({
-
-        "name": "Orshi",
-        "pin": "1234",
-        "target":{"targetName": "Tuul",
-            "targetPin":"2345"}
+    var db = [
+        {
+            "name": "Orshi",
+            "pin": "1234",
+            "isAlive": true,
+            "target":{"targetName": "Tuul",
+                "targetPin":"2345"}
     },
 
-    {
-        "name": "Tuul",
-        "pin": "2345",
-        "target":{"targetName": "Christina",
-            "targetPin":"3456"}
-    },
+        {
+            "name": "Tuul",
+            "pin": "2345",
+            "target":{"targetName": "Christina",
+                "targetPin":"3456"}
+        },
 
-    {
-        "name": "Christina",
-        "pin": "3456",
-        "target":{"targetName": "Najah",
-            "targetPin":"5678"}
-    },
+        {
+            "name": "Christina",
+            "pin": "3456",
+            "target":{"targetName": "Najah",
+                "targetPin":"5678"}
+        },
 
-    {
-        "name": "Najah",
-        "pin": "5678",
-        "target":{"targetName": "Kelsey",
-            "targetPin":"6789"}
-    },
+        {
+            "name": "Najah",
+            "pin": "5678",
+            "target":{"targetName": "Kelsey",
+                "targetPin":"6789"}
+        },
 
-    {
-        "name": "Kelsey",
-        "pin": "6789",
-        "target":{"targetName": "Orshi",
-            "targetPin":"1234"}
-    });
-    myFirebaseRef.child("location/city").on("value", function(snapshot) {
-        alert(snapshot.val());  // Alerts "San Francisco"
-        document.getElementById("cake").innerHTML = snapshot.val();
+        {
+            "name": "Kelsey",
+            "pin": "6789",
+            "target":{"targetName": "Orshi",
+                "targetPin":"1234"}
+        }]
 
-    });
-    document.getElementById("cake").innerHTML = "hiiiii";
+    function myFunction() {
+        var x = prompt("Please enter your pin", "");
+        for(y=0; y < db.length; y++){
+            if (x === db[y].pin) {
+                document.getElementById("targetName").innerHTML = db[y].target.targetName;
+                break;
+
+        }
+
+        //myFunction(x)
+    }
 </script>
->>>>>>> origin/master
-
-<div id="cake">hi</div>
+<div id="targetName"></div>
 </body>
 </html>
----------------------------
