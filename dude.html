@@ -14,6 +14,7 @@
         {
             "name": "Orshi",
             "pin": "1234",
+            "isAlive": true,
             "target":{"targetName": "Tuul",
                 "targetPin":"2345"}
     },
@@ -47,14 +48,17 @@
         }]
 
     function myFunction() {
-        var x = prompt("Please enter your name", " ");
-        if (x === "Orshi") {
-            db.name.innerHTML = db[0].target.targetName;
+        var x = prompt("Please enter your pin", "");
+        for(y=0; y < db.length; y++){
+            if (x === db[y].pin) {
+                document.getElementById("targetName").innerHTML = db[y].target.targetName;
+                break;
+
         }
 
         //myFunction(x)
     }
 </script>
-
+<div id="targetName"></div>
 </body>
 </html>
