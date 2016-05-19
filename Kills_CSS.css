@@ -1,5 +1,5 @@
 #body {
-    background: #c3004c;
+    background:#b4004f;
     display: block;
 }
 
@@ -28,4 +28,24 @@
     font-family: garamond, times-new-roman, serif;
     font-size: 20px;
     font-weight: bold;
+}
+table a {
+    display: block;
+    color: royalblue;
+    padding: 5px 0px 5px 0px;
+    text-decoration: none;
+}
+table a:hover {
+    background-color: #555;
+    color: white;
+}
+td{
+    font-family: sans-serif;
+    font-size: 20px;
+    position: relative;
+    margin: auto;
+    padding: 5px;
+    width: 300px;
+    background-color: white;
+    text-align: center;
 }
