@@ -14,16 +14,7 @@ body {
     font-family: fantasy;
     font-size: 20px;
 }
-table a {
-    display: block;
-    color: royalblue;
-    padding: 5px 0px 5px 0px;
-    text-decoration: none;
-}
-table a:hover {
-    background-color: #555;
-    color: white;
-}
+
 #button {
     position: relative;
     display: inline-block;
@@ -33,6 +24,16 @@ table a:hover {
 #table {
     margin: auto;
     background-color: white;
+}
+table a {
+     display: block;
+     color: royalblue;
+     padding: 5px 0px 5px 0px;
+     text-decoration: none;
+ }
+table a:hover {
+    background-color: #555;
+    color: white;
 }
 td{
     font-family: sans-serif;
