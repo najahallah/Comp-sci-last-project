@@ -55,7 +55,6 @@
     //Gives user a target
     function myFunction() {
         var x = prompt("Please enter your pin", "");
-<<<<<<< HEAD
         for(y=0; y < db.length; y++) {
             if (x === db[y].pin) {
                 document.getElementById("targetName").innerHTML = db[y].target.targetName;
@@ -63,16 +62,24 @@
             }
             //myFunction(x)
         }
-=======
         for (y = 0; y < db.length; y++) {
             if (x === db[y].pin) {
                 document.getElementById("targetName").innerHTML = db[y].target.targetName;
                 break;
 
             }
+        }
+    }
+    //Checks if user is still alive
+    function checkIsAlive(pin){
+        for (y = 0; y < db.length; y++) {
+            if (pin === db[y].pin) {
+                return db[y].isAlive;
+                break;
 
+            }
 
-            //myFunction(x)
+        }
         }
     }
     //Checks if user is still alive
@@ -87,9 +94,6 @@
         }
         return false;
 
-
-
->>>>>>> origin/master
     }
 </script>
 <div id="targetName"></div>
