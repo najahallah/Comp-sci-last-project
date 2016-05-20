@@ -1,12 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- TO DO: 1.) MAKE SURE THE RANDOMLY GENERATED PIN CODE IS NO REPEATED.
+                2.) MAKE SURE YOU CAN ONLY CLICK THE PIN CODE ONCE. -->
     <script src=" "></script>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="Orshi-CSS.css">
     <title>Pin Code</title>
 </head>
 <body>
+<table id="table">
+    <tr>
+        <td><a href="Orshi_file.html" id="menu">Home</a></td>
+        <td><a href="rules.html" id="menu">Rules</a></td>
+        <td><a href="christina–file.html" id="menu">Sign in</a></td>
+        <td><a href="Kills.html" id="menu">Kills</a></td>
+        <td><a href="contact_page.html" id="menu">Contact</a></td>
+    </tr>
+</table>
 <p>Click the button to display your pin number.</p>
 
 <button onclick="myFunction()">Pin Code</button>
@@ -15,7 +26,7 @@
 
 <script action="http://localhost:63342/Comp-sci-last-project/dude.html">
     function myFunction() {
-        var x = Math.floor((Math.random() * 10000));
+        var x = Math.floor((Math.random() * 10000));jh
         if(x <= 999)
             return myFunction();
 

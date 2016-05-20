@@ -22,6 +22,7 @@
         {
             "name": "Tuul",
             "pin": "2345",
+            "isAlive": true,
             "target":{"targetName": "Christina",
                 "targetPin":"3456"}
         },
@@ -29,6 +30,7 @@
         {
             "name": "Christina",
             "pin": "3456",
+            "isAlive": true,
             "target":{"targetName": "Najah",
                 "targetPin":"5678"}
         },
@@ -36,6 +38,7 @@
         {
             "name": "Najah",
             "pin": "5678",
+            "isAlive": true,
             "target":{"targetName": "Kelsey",
                 "targetPin":"6789"}
         },
@@ -43,20 +46,50 @@
         {
             "name": "Kelsey",
             "pin": "6789",
+            "isAlive": true,
             "target":{"targetName": "Orshi",
                 "targetPin":"1234"}
         }]
 
+
+    //Gives user a target
     function myFunction() {
         var x = prompt("Please enter your pin", "");
-        for(y=0; y < db.length; y++){
+<<<<<<< HEAD
+        for(y=0; y < db.length; y++) {
+            if (x === db[y].pin) {
+                document.getElementById("targetName").innerHTML = db[y].target.targetName;
+                break;
+            }
+            //myFunction(x)
+        }
+=======
+        for (y = 0; y < db.length; y++) {
             if (x === db[y].pin) {
                 document.getElementById("targetName").innerHTML = db[y].target.targetName;
                 break;
 
-        }
+            }
 
-        //myFunction(x)
+
+            //myFunction(x)
+        }
+    }
+    //Checks if user is still alive
+    function checkIsAlive(pin){
+        for (y = 0; y < db.length; y++) {
+            if (pin === db[y].pin) {
+                return db[y].isAlive;
+                break;
+
+            }
+
+        }
+        return false;
+
+
+
+>>>>>>> origin/master
     }
 </script>
 <div id="targetName"></div>

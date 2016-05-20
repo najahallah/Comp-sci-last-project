@@ -1,5 +1,9 @@
 #body {
-    background: #c3004c;
+<<<<<<< HEAD
+    background: rgba(184, 2, 50, 0.76);
+=======
+    background:#b4004f;
+>>>>>>> origin/master
     display: block;
 }
 
@@ -28,4 +32,28 @@
     font-family: garamond, times-new-roman, serif;
     font-size: 20px;
     font-weight: bold;
+}
+table a {
+    display: block;
+    color: royalblue;
+    padding: 5px 0px 5px 0px;
+    text-decoration: none;
+}
+table a:hover {
+    background-color: #555;
+    color: white;
+}
+td{
+    font-family: sans-serif;
+    font-size: 20px;
+    position: relative;
+    margin: auto;
+    padding: 5px;
+    width: 300px;
+    background-color: white;
+    text-align: center;
+}
+#table {
+    margin: auto;
+    background-color: white;
 }
