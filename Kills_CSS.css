@@ -1,4 +1,5 @@
 #body {
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 <<<<<<< HEAD
     background: rgba(184, 2, 50, 0.76);
@@ -9,6 +10,13 @@
     background:#b4004f;
 >>>>>>> origin/master
     display: block;
+=======
+    background-image: url(assassin4.png);
+    background-repeat: no-repeat;
+    background-position: top;
+    background-attachment: fixed;
+    background-size: cover;
+>>>>>>> Stashed changes
 }
 
 #title{
@@ -29,13 +37,14 @@
     text-align: center;
     color: black;
     font-family: monospace, serif;
-    font-size: 30px;
+    font-size: 25px;
 }
 #form{
     text-align: center;
     font-family: garamond, times-new-roman, serif;
     font-size: 20px;
     font-weight: bold;
+
 }
 table a {
     display: block;
