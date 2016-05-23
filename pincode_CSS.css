@@ -1,0 +1,27 @@
+#table {
+    margin: auto;
+    background-color: white;
+}
+table a {
+    display: block;
+    color: royalblue;
+    padding: 5px 0px 5px 0px;
+    text-decoration: none;
+}
+table a:hover {
+    background-color: #555;
+    color: white;
+}
+td{
+    font-family: sans-serif;
+    font-size: 20px;
+    position: relative;
+    margin: auto;
+    padding: 5px;
+    width: 300px;
+    background-color: white;
+    text-align: center;
+}
+body {
+    background: #00cccc;
+}
