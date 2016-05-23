@@ -20,7 +20,7 @@
 </table>
 <p>Click the button to display your pin number.</p>
 
-<button onclick="myFunction()">Pin Code</button>
+<button id = "kmy" onclick="myFunction()">Pin Code</button>
 
 <p id="demo"></p>
 
@@ -28,11 +28,14 @@
     function myFunction() {
         var max = 10000;
         var random=[];
-        for(var i = 0;i<max ; i++)
-        var x = Math.floor(Math.random() * max);
-        if(x <= 999)
-            return myFunction();
-        document.getElementById("demo").innerHTML = x;
+        for(var i = 0;i<max ; i++) {
+            var x = Math.floor(Math.random() * max);
+            if (x <= 999) {
+                return myFunction();
+            }
+            document.getElementById("demo").innerHTML = x;
+            document.getElementById("kmy").disabled = true;
+        }
     }
 </script>
 <div>
