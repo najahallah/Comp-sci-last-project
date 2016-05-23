@@ -53,6 +53,9 @@ var myFunction = function() {
 }
 
 var killed = function(pin){
-    var pin = document.getElementById("").innerHTML;
-
-}
+    var pin = document.getElementById("unique").innerHTML;
+    for (y = 0; y < db.length; y++) {
+        if (pin === db[y].pin) {
+            document.getElementById();
+            break;
+};
