@@ -26,13 +26,12 @@
 
 <script action="http://localhost:63342/Comp-sci-last-project/dude.html">
     function myFunction() {
+        var max = 10000;
         var random=[];
-        var x = Math.floor((Math.random() * 10000));
-        if(x <= 999) {
-            random =
+        for(var i = 0;i<max ; i++)
+        var x = Math.floor(Math.random() * max);
+        if(x <= 999)
             return myFunction();
-        }
-
         document.getElementById("demo").innerHTML = x;
     }
 </script>
@@ -43,7 +42,7 @@
 </body>
 </html>
 <!--
-for(var i = 0;i<max ; i++){
+{
                     var temp = Math.floor(Math.random()*max);
                     if(random.indexOf(temp) == -1){
                     random.push(temp);
