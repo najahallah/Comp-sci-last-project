@@ -22,13 +22,13 @@ td{
     background-color: white;
     text-align: center;
 }
-body {
+#pincode_body {
     background: #000000;
     color: ghostwhite;
     font-family: "Times New Roman";
     font-size: 25px;
 }
-a {
+#pincode_rules {
     color: #ff0000;
     font-size: 30px;
 }

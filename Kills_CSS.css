@@ -1,11 +1,8 @@
-#body {
+#kills {
 
     background: rgba(184, 2, 50, 0.76);
     background:#b4004f;
-
-    background:#b4004f;
     display: block;
-
     background-image: url(assassin4.png);
     background-repeat: no-repeat;
     background-position: top;
@@ -13,7 +10,7 @@
     background-size: cover;
 }
 
-#title{
+#kills_title{
     font-family: monospace, serif;
     -webkit-text-stroke: 1px black;
     text-shadow:
@@ -27,13 +24,13 @@
     margin: auto;
     text-align: center;
 }
-#sub-title {
+#kills_sub-title {
     text-align: center;
     color: black;
     font-family: monospace, serif;
     font-size: 25px;
 }
-#form{
+#kills_form{
     text-align: center;
     font-family: garamond, times-new-roman, serif;
     font-size: 20px;
