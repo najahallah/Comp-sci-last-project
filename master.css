@@ -1,3 +1,5 @@
+/*MAIN MENU*/
+
 #table {
     margin: auto;
     background-color: white;
@@ -22,9 +24,15 @@ td{
     background-color: white;
     text-align: center;
 }
-#christina {
+
+/*Register page*/
+
+#register {
     background-color: #ffc0cb;
 }
+
+/*Kills page*/
+
 #kills {
 
     background: rgba(184, 2, 50, 0.76);
@@ -63,6 +71,9 @@ td{
     font-size: 20px;
     font-weight: bold;
 }
+
+/*pincode page*/
+
 #pincode_body {
     background: #000000;
     color: ghostwhite;
@@ -76,6 +87,9 @@ td{
 #kmy {
     color: black;
 }
+
+/*homepage*/
+
 #home_body {
     background-color: #0099ff;
 }
@@ -91,13 +105,15 @@ td{
     font-family: fantasy;
     font-size: 20px;
 }
-
 #home_button {
     position: relative;
     display: inline-block;
     color: white;
     text-decoration: none;
 }
+
+/*rules page*/
+
 #rules_h2 {font-family: monospace;
     font-size: 30px}
 
@@ -109,6 +125,9 @@ td{
 #signin_body {
     background-color: #4CAF50;
 }
+
+/*sign in page*/
+
 #signin_title{
     font-family: "Times New Roman";
     font-size: 65px;
@@ -119,6 +138,9 @@ td{
 #signin_sub-title {
     font-family: "Times New Roman";
 }
+
+/*contact*/
+
 #contact_body {
     background-color: #6ecda6;
     display: block;
