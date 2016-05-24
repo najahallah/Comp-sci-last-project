@@ -106,3 +106,31 @@ td{
 
 #rules_body {background-color: #ccccff;
 }
+#signin_body {
+    background-color: #4CAF50;
+}
+#signin_title{
+    font-family: "Times New Roman";
+    font-size: 65px;
+    color: #010332;
+    margin: auto;
+    text-align: center;
+}
+#signin_sub-title {
+    font-family: "Times New Roman";
+}
+#contact_body {
+    background-color: #6ecda6;
+    display: block;
+    font-family: sans-serif;
+    font-size: 45px;
+    color: #000000;
+    text-align: center;
+
+}
+#contact{
+    font-family: sans-serif;
+    font-size: 45px;
+    color: #000000;
+    text-align: center;
+}
