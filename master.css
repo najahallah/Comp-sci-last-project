@@ -126,14 +126,30 @@ td{
 /*sign in page*/
 
 #signin_title{
-    font-family: "Times New Roman";
+    font-family: monospace, serif;
+    -webkit-text-stroke: 1px black;
+    text-shadow:
+    3px 3px 0 #000,
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
     font-size: 65px;
-    color: #010332;
+    color: #CB2703;
     margin: auto;
     text-align: center;
 }
 #signin_sub-title {
     font-family: "Times New Roman";
+    margin: auto;
+    text-align: center;
+    font-size: 25px;
+}
+#form {
+    margin: auto;
+    text-align: center;
+    font-size: 17px;
+
 }
 
 /*contact*/
