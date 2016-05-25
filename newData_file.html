@@ -14,6 +14,14 @@
         };
         firebase.initializeApp(config);
 
+        function userNotInDb(user) {
+
+            firebase.database().ref('users/' + user.uid).on('value', function(snapshot) {
+                console.log(snapshot.val().email);
+                //doSomething(snapshot.val().email);
+            });
+        }
+
         function createUser() {
             var userEmail = document.getElementById("userEmail").value;
             var userName = document.getElementById("userName").value;
@@ -21,7 +29,7 @@
 
             firebase.auth().createUserWithEmailAndPassword(userEmail, pin);
             firebase.auth().onAuthStateChanged(function(user) {
-                if (user) {
+                if (user && userNotInDb(user)) {
                     // User is signed in.
                     writeUserData(user.uid,userName,userEmail);
 
