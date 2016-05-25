@@ -1,0 +1,34 @@
+#rules_h2 {font-family: monospace;
+    font-size: 30px}
+
+#rules_h3 {font-family: monospace;
+    font-size: 20px}
+
+#rules_body {background-color: #ccccff;
+        }
+
+table a {
+    display: block;
+    color: royalblue;
+    padding: 8px 0px 8px 16px;
+    text-decoration: none;
+}
+table a:hover {
+    background-color: #555;
+    color: white;
+}
+td{
+    font-family: sans-serif;
+    font-size: 20px;
+    position: relative;
+    list-style-type: none;
+    margin: auto;
+    padding: 5px;
+    width: 300px;
+    background-color: white;
+    text-align: center;
+}
+#table {
+    margin: auto;
+    background-color: white;
+}

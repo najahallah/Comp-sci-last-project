@@ -1,11 +1,6 @@
-h2 {font-family: monospace;
-    font-size: 30px}
-
-h3 {font-family: monospace;
-    font-size: 20px}
-
-body {background-color: #ccccff;
-        }
+#christina {
+    background-color: #ffc0cb;
+}
 
 table a {
     display: block;
