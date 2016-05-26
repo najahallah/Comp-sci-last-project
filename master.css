@@ -169,3 +169,8 @@ td{
     color: #000000;
     text-align: center;
 }
+
+/*Sign in firebase*/
+#firebase_body {
+    background-color: #0099ff;
+}
