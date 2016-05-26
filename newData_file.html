@@ -54,7 +54,10 @@
         function logOutUser() {
             firebase.auth().signOut().then(function() {
                 // Sign-out successful.
-                console.log("Log Out: successful.")
+                // Sign-out successful.
+                console.log("Log Out: successful.");
+                alert("You are logged out now.");
+                return location.reload();
             }, function(error) {
                 // An error happened.
             });
