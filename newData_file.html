@@ -2,6 +2,7 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
         <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
     <link rel="stylesheet" type="text/css" href="master.css">
     <script>
@@ -23,11 +24,9 @@
             firebase.auth().onAuthStateChanged(function(user) {
                 if (user) {
                     // User is signed in.
+                    $("#output").text(user.email);
                     writeUserData(user.uid,userName,userEmail);
 
-                } else {
-                    // No user is signed in.
-                    alert("nah");
                 }
             });
         }
@@ -87,5 +86,6 @@ Set Pin: <input type="text" id="pin"><br>
 <button onClick="createUser()">Create</button>
 <button onClick="logInUser()">Log In</button>
 <button onclick="logOutUser()">Log Out</button>
+<div id="output"></div>
 </body>
 </html>
