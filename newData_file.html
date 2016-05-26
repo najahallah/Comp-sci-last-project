@@ -24,7 +24,7 @@
             firebase.auth().onAuthStateChanged(function(user) {
                 if (user) {
                     // User is signed in.
-                    $("#output").text(user.email);
+                    alert("You are now a user");
                     writeUserData(user.uid,userName,userEmail);
 
                 }
