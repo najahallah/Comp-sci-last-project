@@ -53,13 +53,13 @@
             });
         }
 
-        function logOutUser(){
-            //var userEmail = document.getElementById("userEmail").value;
-            var userName = document.getElementById("userName").value;
-            var pin = document.getElementById("pin").value;
-
+        function logOutUser() {
             firebase.auth().signOut().then(function() {
                 // Sign-out successful.
+                // Sign-out successful.
+                console.log("Log Out: successful.");
+                alert("You are logged out now.");
+                return location.reload();
             }, function(error) {
                 // An error happened.
             });
@@ -69,13 +69,13 @@
             firebase.database().ref('users/' + userId).set({
                 username: name,
                 email: email
-            });
+            });               
         }
     </script>
     <title></title>
 </head>
 <body>
-    user email: <input type="text" id="userEmail"><br>
+    <!--user email: <input type="text" id="userEmail"><br>-->
     user name: <input type="text" id="userName"><br>
     Set Pin: <input type="text" id="pin"><br>
     <button onClick="createUser()">Create</button>

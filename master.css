@@ -74,7 +74,7 @@ td{
 #pincode_body {
     background: #000000;
     color: ghostwhite;
-    font-family: "Times New Roman";
+    font-family: monospace, serif;
     font-size: 25px;
 }
 #pincode_rules {
@@ -118,6 +118,7 @@ td{
     font-size: 20px}
 
 #rules_body {background-color: #ccccff;
+    font-family: sans-serif;
 }
 #signin_body {
     background-color: #4CAF50;
