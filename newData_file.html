@@ -62,12 +62,10 @@
             });
         }
 
-        function logOutUser(){
-            var userEmail = document.getElementById("userEmail").value;
-            var pin = document.getElementById("pin").value;
-
+        function logOutUser() {
             firebase.auth().signOut().then(function() {
                 // Sign-out successful.
+                console.log("Log Out: successful.")
             }, function(error) {
                 // An error happened.
             });
