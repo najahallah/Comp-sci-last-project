@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html>
+<head lang="en">
     <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
-
+    <link rel="stylesheet" type="text/css" href="master.css">
     <script>
         // Initialize Firebase
         var config = {
@@ -15,26 +16,23 @@
         firebase.initializeApp(config);
 
         function createUser() {
-            //var userEmail = document.getElementById("userEmail").value;
+            var userEmail = document.getElementById("userEmail").value;
             var userName = document.getElementById("userName").value;
             var pin = document.getElementById("pin").value;
 
             firebase.auth().createUserWithEmailAndPassword(userEmail, pin);
             firebase.auth().onAuthStateChanged(function(user) {
                 if (user) {
-                    // User account is created.
+                    // User is signed in.
+                    alert("You are now a user");
                     writeUserData(user.uid,userName,userEmail);
-                    console.log("Success: Your account is created")
-                } else {
-                    // No user is signed in.
-                    alert("nah");
+
                 }
             });
         }
 
         function logInUser() {
-            //var userEmail = document.getElementById("userEmail").value;
-            var userName = document.getElementById("userName").value;
+            var userEmail = document.getElementById("userEmail").value;
             var pin = document.getElementById("pin").value;
 
             firebase.auth().signInWithEmailAndPassword(userEmail, pin);
@@ -44,11 +42,7 @@
                     firebase.database().ref('users/' + user.uid).on('value', function(snapshot) {
                         console.log(snapshot.val().email);
                         //doSomething(snapshot.val().email);
-                        console.log("SUCCESS!!!");
                     });
-                } else {
-                    // No user is signed in.
-                    alert("nah");
                 }
             });
         }
@@ -69,17 +63,29 @@
             firebase.database().ref('users/' + userId).set({
                 username: name,
                 email: email
-            });               
+            });
         }
     </script>
     <title></title>
 </head>
-<body>
-    <!--user email: <input type="text" id="userEmail"><br>-->
-    user name: <input type="text" id="userName"><br>
-    Set Pin: <input type="text" id="pin"><br>
-    <button onClick="createUser()">Create</button>
-    <button onClick="logInUser()">Log In</button>
-    <button onclick="logOutUser()">Log Out</button>
+<table id="table">
+    <tr>
+        <td><a href="Orshi_file.html" id="menu">Home</a></td>
+        <td><a href="rules.html" id="menu">Rules</a></td>
+        <td><a href="newData_file.html" id="menu">Sign in</a></td>
+        <td><a href="Kills.html" id="menu">Kills</a></td>
+        <td><a href="contact_page.html" id="menu">Contact</a></td>
+    </tr>
+</table>
+
+<body id="firebase_body">
+<p></p>
+user email: <input type="text" id="userEmail"><br>
+user name: <input type="text" id="userName"><br>
+Set Pin: <input type="text" id="pin"><br>
+<button onClick="createUser()">Create</button>
+<button onClick="logInUser()">Log In</button>
+<button onclick="logOutUser()">Log Out</button>
+<div id="output"></div>
 </body>
 </html>
