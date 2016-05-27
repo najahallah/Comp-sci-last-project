@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    <link rel="stylesheet" type="text/css" href="master.css">
+
+    <!--<div id="div1">
+        <p id="p1">This is a paragraph.</p>
+        <p id="p2">This is another paragraph.</p>
+    </div>-->
+
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyDPVuZdO4O1SCO6qY1-_KYoF42f_1frUOE",
+            authDomain: "assassin-a488d.firebaseapp.com",
+            databaseURL: "https://assassin-a488d.firebaseio.com",
+            storageBucket: "assassin-a488d.appspot.com",
+        };
+        firebase.initializeApp(config);
+
+        function createUser() {
+            var userEmail = document.getElementById("userEmail").value;
+            var userName = document.getElementById("userName").value;
+            var pin = document.getElementById("pin").value;
+
+            firebase.auth().createUserWithEmailAndPassword(userEmail, pin);
+            firebase.auth().onAuthStateChanged(function(user) {
+                if (user) {
+                    // User is signed in.
+                    alert("You are now a user");
+                    writeUserData(user.uid,userName,userEmail);
+                    var para = document.createElement("p");
+                    var node = document.createTextNode("This is new.");
+                    para.appendChild(node);
+
+                    var element = document.getElementById("div1");
+                    var child = document.getElementById("p1");
+                    element.insertChildAfter(para,child);
+
+                }
+            });
+        }
+    </script>
+        <title></title>
+</head>
+<table id="table">
+    <tr>
+        <td><a href="Orshi_file.html" id="menu">Home</a></td>
+        <td><a href="rules.html" id="menu">Rules</a></td>
+        <td><a href="newData_file.html" id="menu">Sign in</a></td>
+        <td><a href="Kills.html" id="menu">Kills</a></td>
+        <td><a href="contact_page.html" id="menu">Contact</a></td>
+    </tr>
+</table>
+
+<body id="firebase_body">
+
+user email: <input type="text" id="userEmail"><br>
+user name: <input type="text" id="userName"><br>
+Set Pin: <input type="text" id="pin"><br>
+
+<button onClick="createUser()">Create</button>
+
+<div id="output"></div>
+</body>
+</html>
