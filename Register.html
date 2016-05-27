@@ -29,9 +29,7 @@
                     //alert("You are now a user");
                     writeUserData(user.uid,userName,userEmail);
                 }
-                else {
-                    document.getElementById("no_input").innerHTML = "Please enter your information.";
-                }
+
             });
         }
     </script>
@@ -55,7 +53,7 @@ Set Pin: <input type="text" id="pin"><br>
 
 <button onClick="createUser()">Create</button>
 <p id="success_user"></p>
-<p id="no_input"></p>
+
 <div id="output"></div>
 </body>
 </html>
