@@ -6,11 +6,6 @@
     <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
     <link rel="stylesheet" type="text/css" href="master.css">
 
-    <!--<div id="div1">
-        <p id="p1">This is a paragraph.</p>
-        <p id="p2">This is another paragraph.</p>
-    </div>-->
-
     <script>
         // Initialize Firebase
         var config = {
@@ -32,13 +27,7 @@
                     // User is signed in.
                     alert("You are now a user");
                     writeUserData(user.uid,userName,userEmail);
-                    var para = document.createElement("p");
-                    var node = document.createTextNode("This is new.");
-                    para.appendChild(node);
 
-                    var element = document.getElementById("div1");
-                    var child = document.getElementById("p1");
-                    element.insertChildAfter(para,child);
 
                 }
             });
