@@ -3,7 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
     <link rel="stylesheet" type="text/css" href="master.css">
     <script>
         // Initialize Firebase
@@ -11,7 +11,7 @@
             apiKey: "AIzaSyDPVuZdO4O1SCO6qY1-_KYoF42f_1frUOE",
             authDomain: "assassin-a488d.firebaseapp.com",
             databaseURL: "https://assassin-a488d.firebaseio.com",
-            storageBucket: "assassin-a488d.appspot.com",
+            storageBucket: "assassin-a488d.appspot.com"
         };
         firebase.initializeApp(config);
 
@@ -31,6 +31,25 @@
             });
         }
 
+       //grabs all users from the database and returns a random one
+        function chooseRandomUser() {
+            var userArray = [];
+            firebase.database().ref('users/').on('value', function(snapshot) {
+                $.each(snapshot.val(), function(key, value) {
+                    //do whatever
+                    userArray.push(value);
+//                    if(value.isAlive == true) {
+//                        aliveArray.push(value);
+//                    }
+                });
+                var person = userArray[Math.floor(Math.random()*userArray.length)];
+                console.log(person.email);
+            });
+
+            return person;
+
+        }
+
         function logInUser() {
             var userEmail = document.getElementById("userEmail").value;
             var pin = document.getElementById("pin").value;
@@ -42,6 +61,7 @@
                     firebase.database().ref('users/' + user.uid).on('value', function(snapshot) {
                         console.log(snapshot.val().email);
                         //doSomething(snapshot.val().email);
+
                     });
                 }
             });
@@ -70,11 +90,11 @@
 </head>
 <table id="table">
     <tr>
-        <td><a href="Orshi_file.html" id="menu">Home</a></td>
-        <td><a href="rules.html" id="menu">Rules</a></td>
-        <td><a href="newData_file.html" id="menu">Sign in</a></td>
-        <td><a href="Kills.html" id="menu">Kills</a></td>
-        <td><a href="contact_page.html" id="menu">Contact</a></td>
+        <td><a href="Orshi_file.html" id="menu1">Home</a></td>
+        <td><a href="rules.html" id="menu2">Rules</a></td>
+        <td><a href="newData_file.html" id="menu3">Sign in</a></td>
+        <td><a href="Kills.html" id="menu4">Kills</a></td>
+        <td><a href="contact_page.html" id="menu5">Contact</a></td>
     </tr>
 </table>
 
@@ -85,6 +105,7 @@ user name: <input type="text" id="userName"><br>
 Set Pin: <input type="text" id="pin"><br>
 <button onClick="logInUser()">Log In</button>
 <button onclick="logOutUser()">Log Out</button>
+<button onclick="chooseRandomUser()">Choose Random User</button>
 <div id="output"></div>
 </body>
 </html>
