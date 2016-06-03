@@ -49,19 +49,21 @@ function chooseRandomUser() {
     firebase.database().ref('users/').on('value', function (snapshot) {
         $.each(snapshot.val(), function (key, value) {
             //do whatever
-            if (value.isAlive == true && value.isAssigned == false && value.username != loggedInUser.username) {
-                if (value.email != loggedInUser.email) {
+            if (value.isAlive == true && value.isAssigned == false && value.userName != loggedInUser.userName) {
                     userArray.push(value);
                 }
-            }
+            });
             var person = userArray[Math.floor(Math.random() * userArray.length)];
-            console.log(person.username);
+            //firebase.database().ref('users/' + userId).set({
+            //    target: person.userEmail
+            //});
+            console.log(person.userName);
             console.log(loggedInUser);
-            document.getElementById("target").innerHTML = "Your target is " + person.username;
+            document.getElementById("target").innerHTML = "Your target is " + person.userName;
             document.getElementById("getTarget").disabled = true;
         });
 
-    });
+
 }
 
 
