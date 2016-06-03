@@ -7,6 +7,13 @@
     <link rel="stylesheet" type="text/css" href="master.css">
     <script src="Javascript.js"></script>
     <title></title>
+    <script>
+        $(document).ready(function(){
+            $("#logInUser").click(function() {
+                logInUser();
+            });
+        })
+    </script>
 </head>
 <table id="table">
     <tr>
@@ -23,8 +30,8 @@
 user email: <input type="text" id="userEmail"><br>
 user name: <input type="text" id="userName"><br>
 Set Pin: <input type="text" id="pin"><br>
-<button onClick="logInUser()">Log In</button>
-<button onclick="logOutUser()">Log Out</button>
+<button id="logInUser">Log In</button>
+<button id="logOutUser">Log Out</button>
 <button id="getTarget" onclick="chooseRandomUser()">Choose Random User</button>
 <button onClick="assignUsers()">Array</button>
 <div id="output"></div>
