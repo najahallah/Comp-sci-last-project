@@ -19,7 +19,6 @@ function writeUserData(userId, name, email) {
     });
 }
 
-firebase.initializeApp(config);
 var loggedInUser;
 
 function createUser() {
