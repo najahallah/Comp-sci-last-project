@@ -14,6 +14,7 @@
             storageBucket: "assassin-a488d.appspot.com"
         };
         firebase.initializeApp(config);
+        var loggedInUser;
 
         function createUser() {
             var userEmail = document.getElementById("userEmail").value;
@@ -25,6 +26,8 @@
                 if (user) {
                     // User is signed in.
                     alert("You are now a user");
+                    loggedInUser = user;
+                    /// add additional fields here!!!
                     writeUserData(user.uid,userName,userEmail);
 
                 }
@@ -37,18 +40,84 @@
             firebase.database().ref('users/').on('value', function(snapshot) {
                 $.each(snapshot.val(), function(key, value) {
                     //do whatever
-                    userArray.push(value);
-//                    if(value.isAlive == true) {
-//                        aliveArray.push(value);
-//                    }
+//                    if(value.isAlive == true && value.isAssigned == false && value.username != loggedInUser.username) {
+                    if(value.email != loggedInUser.email) {
+                       userArray.push(value);
+                    }
                 });
                 var person = userArray[Math.floor(Math.random()*userArray.length)];
-                console.log(person.email);
+                console.log(person.username);
+                console.log(loggedInUser);
+                document.getElementById("target").innerHTML = "Your target is " + person.username;
+                document.getElementById("getTarget").disabled = true;
             });
 
-            return person;
-
         }
+
+//        function shuffle(a) {
+//            var j, x, i;
+//            for (i = a.length; i; i -= 1) {
+//                j = Math.floor(Math.random() * i);
+//                x = a[i - 1];
+//                a[i - 1] = a[j];
+//                a[j] = x;
+//            }
+//        }
+//
+//        function checkArray(userArray, targetArray){
+//            for (i = userArray.length; i; i -= 1){
+//                if(userArray[i] == targetArray[i]){
+//                    shuffle(targetArray);
+//                    checkArray(userArray, targetArray);
+//
+//                }
+//                else{
+//                    console.log(userArray);
+//                    console.log(targetArray);
+//                }
+//
+//            };
+//        }
+
+
+//        function assignUsers() {
+//            var userArray = [];
+//            firebase.database().ref('users/').on('value', function (snapshot) {
+//                $.each(snapshot.val(), function (key, value) {
+//                    //do whatever
+//                    userArray.push(value);
+//                    if () {
+//                        aliveArray.push(value);
+//                    }
+//                });
+//
+//            });
+
+//            var targetArray = [];
+//            firebase.database().ref('users/').on('value', function (snapshot) {
+//                $.each(snapshot.val(), function (key, value) {
+//                    //do whatever
+//                    targetArray.push(value);
+//                    if (value.isAlive == true) {
+//                        aliveArray.push(value);
+//                    }
+//                });
+//
+//            });
+//
+//
+//            shuffle(targetArray);
+//            checkArray(userArray, targetArray);
+
+
+       // }
+
+
+
+
+
+
+
 
         function logInUser() {
             var userEmail = document.getElementById("userEmail").value;
@@ -58,6 +127,7 @@
             firebase.auth().onAuthStateChanged(function(user) {
                 if (user) {
                     // User is signed in.
+                    loggedInUser = user;
                     firebase.database().ref('users/' + user.uid).on('value', function(snapshot) {
                         console.log(snapshot.val().email);
                         //doSomething(snapshot.val().email);
@@ -79,12 +149,7 @@
             });
         }
 
-        function writeUserData(userId, name, email) {
-            firebase.database().ref('users/' + userId).set({
-                username: name,
-                email: email
-            });
-        }
+
     </script>
     <title></title>
 </head>
@@ -105,7 +170,9 @@ user name: <input type="text" id="userName"><br>
 Set Pin: <input type="text" id="pin"><br>
 <button onClick="logInUser()">Log In</button>
 <button onclick="logOutUser()">Log Out</button>
-<button onclick="chooseRandomUser()">Choose Random User</button>
+<button id="getTarget" onclick="chooseRandomUser()">Choose Random User</button>
+<button onClick="assignUsers()">Array</button>
 <div id="output"></div>
+<p id="target"></p>
 </body>
 </html>

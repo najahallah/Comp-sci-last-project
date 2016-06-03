@@ -16,6 +16,19 @@
         };
         firebase.initializeApp(config);
 
+        function writeUserData(userId, name, email) {
+            firebase.database().ref('users/' + userId).set({
+                userName: name,
+                email: email,
+                isAlive: true,
+                isAssigned: false,
+                target: ""
+
+                //write different fields here//
+            });
+        }
+
+
         function createUser() {
             var userEmail = document.getElementById("userEmail").value;
             var userName = document.getElementById("userName").value;
