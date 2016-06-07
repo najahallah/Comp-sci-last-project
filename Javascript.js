@@ -31,21 +31,23 @@ function createUser() {
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             // User is signed in.
-            document.getElementById("success_user").innerHTML = "You are now a user.";
+            document.getElementById("success_user").innerHTML = "You are now a user. Please go to the sign in page to log in to begin your missions.";
             loggedInUser = user;
             /// add additional fields here!!!
             writeUserData(user.uid,userName,userEmail);
         }
+        else {
+            document.getElementById("fail_user").innerHTML = "There is already an account with this email. Please try again.";
+        }
+        }
 
-    });
+    );
 }
 
-
-
+var userArray = [];
 
 //grabs all users from the database and returns a random one
-function chooseRandomUser() {
-    var userArray = [];
+function chooseRandomUser(userArray) {
     firebase.database().ref('users/').on('value', function (snapshot) {
         $.each(snapshot.val(), function (key, value) {
             //do whatever
@@ -61,6 +63,8 @@ function chooseRandomUser() {
             console.log(loggedInUser);
             document.getElementById("target").innerHTML = "Your target is " + person.userName;
             document.getElementById("getTarget").disabled = true;
+            //FIX THIS MAKE SURE IT RETURNS USERARRAY
+            return person;
         });
 
 
@@ -97,4 +101,19 @@ function logOutUser() {
     });
 }
 
+function startGame(userArray){
+    var targetArray = [];
 
+    for (i = 0; i < userArray.length; i++) {
+        if(userArray.length >= 10) {
+            var target = chooseRandomUser();
+            targetArray.push(target);
+        }
+        else{
+            alert("Please log in some other time. There are not enough Assassins present to eliminate.");
+            break;
+        }
+    }
+    console.log(userArray);
+    console.log(targetArray);
+}
