@@ -44,10 +44,11 @@ function createUser() {
     );
 }
 
-var userArray = [];
+//MAKE SURE USERARRAY HAS STUFF IN IT
 
 //grabs all users from the database and returns a random one
-function chooseRandomUser(userArray) {
+function chooseRandomUser() {
+    var userArray = [];
     firebase.database().ref('users/').on('value', function (snapshot) {
         $.each(snapshot.val(), function (key, value) {
             //do whatever
@@ -59,11 +60,11 @@ function chooseRandomUser(userArray) {
             //firebase.database().ref('users/' + userId).set({
             //    target: person.userEmail
             //});
-            console.log(person.userName);
-            console.log(loggedInUser);
+            //console.log(person.userName);
+            //console.log(loggedInUser);
             document.getElementById("target").innerHTML = "Your target is " + person.userName;
             document.getElementById("getTarget").disabled = true;
-            //FIX THIS MAKE SURE IT RETURNS USERARRAY
+            //FIX THIS MAKE SURE IT RETURNS USER ARRAY
             return person;
         });
 
@@ -101,19 +102,29 @@ function logOutUser() {
     });
 }
 
-function startGame(userArray){
-    var targetArray = [];
+//function startGame(userArray){
+//    var targetArray = [];
+//
+//    for (i = 0; i < userArray.length; i++) {
+//        if(userArray.length >= 10) {
+//            var target = chooseRandomUser();
+//            targetArray.push(target);
+//        }
+//        else{
+//            alert("Please log in some other time. There are not enough Assassins present to eliminate.");
+//            break;
+//        }
+//    }
+//    console.log(userArray);
+//    console.log(targetArray);
+//}
 
-    for (i = 0; i < userArray.length; i++) {
-        if(userArray.length >= 10) {
-            var target = chooseRandomUser();
-            targetArray.push(target);
+function writeTarget() {
+        var person = chooseRandomUser(userArray);
+        for (i = 0; i < userArray.length; i++) {
+            firebase.database().ref('users/' + loggedInUser.uid).set({
+                target: person.userEmail
+            });
+
         }
-        else{
-            alert("Please log in some other time. There are not enough Assassins present to eliminate.");
-            break;
-        }
-    }
-    console.log(userArray);
-    console.log(targetArray);
 }
