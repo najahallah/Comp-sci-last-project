@@ -6,97 +6,118 @@ var config = {
     storageBucket: "assassin-a488d.appspot.com",
 };
 firebase.initializeApp(config);
-var loggedInUser;
 
-function writeUserData(userId, name, email) {
-    firebase.database().ref('users/' + userId).set({
-        userName: name,
-        email: email,
-        isAlive: true,
-        isAssigned: false,
-        target: ""
+$(document).ready(function() {
+    loggedInUser = firebase.auth().currentUser;
+    if(loggedInUser != null) {
+        $('#currentUser').text(loggedInUser.email);
+    }
+    else {
+        $('#currentUser').text("no user");
+    }
+});
 
-        //write different fields here//
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        // User is signed in.
+        loggedInUser = firebase.auth().currentUser;
+        console.log(user.email);
+        $('#currentUser').text(user.email);
+    } else {
+        // No user is signed in.
+        console.log('no user')
+        $('#currentUser').text("no user");
+    }
+});
+
+function createUser() {
+    var email = $('#email').val();
+    var password = $('#password').val();
+    var name = $('#name').val();
+    var pin = $('#pin').val();
+
+    firebase.auth().createUserWithEmailAndPassword(email,password).catch(function(error) {
+        console.log(error.code);
+        console.log(error.message);
+    });
+
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            firebase.database().ref('users/').on('value', function (snapshot) {
+                console.log(snapshot.val());
+                console.log(user.uid);
+                newUser = true;
+                $.each(snapshot.val(), function (key, value) {
+                    if (key == user.uid) {
+                        console.log("existing user");
+                        newUser = false;
+                    }
+                });
+                if(newUser) {
+                    console.log("writing new user data")
+                    firebase.database().ref('users/' + user.uid).set({
+                        userName: name,
+                        email: user.email,
+                        isAlive: true,
+                        isAssigned: false,
+                        pin: pin,
+                        target: ""
+                    });
+                }
+            });
+        }
     });
 }
 
+function logInUser() {
+    var email = $('#email').val();
+    var password = $('#password').val();
 
+    firebase.auth().signInWithEmailAndPassword(email, password);
 
-function createUser() {
-    var userEmail = document.getElementById("userEmail").value;
-    var userName = document.getElementById("userName").value;
-    var pin = document.getElementById("pin").value;
-
-    firebase.auth().createUserWithEmailAndPassword(userEmail, pin);
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            // User is signed in.
-            document.getElementById("success_user").innerHTML = "You are now a user. Please go to the sign in page to log in to begin your missions.";
-            loggedInUser = user;
-            /// add additional fields here!!!
-            writeUserData(user.uid,userName,userEmail);
+            console.log(user.email);
         }
-        else {
-            document.getElementById("fail_user").innerHTML = "There is already an account with this email. Please try again.";
-        }
-        }
-
-    );
+    });
 }
 
-//MAKE SURE USERARRAY HAS STUFF IN IT
-
 //grabs all users from the database and returns a random one
-function chooseRandomUser() {
+function getTarget() {
     var userArray = [];
     firebase.database().ref('users/').on('value', function (snapshot) {
         $.each(snapshot.val(), function (key, value) {
             //do whatever
-            if (value.isAlive == true && value.isAssigned == false && value.userName != loggedInUser.userName) {
-                    userArray.push(value);
-                }
-            });
-            var person = userArray[Math.floor(Math.random() * userArray.length)];
-            //firebase.database().ref('users/' + userId).set({
-            //    target: person.userEmail
-            //});
-            //console.log(person.userName);
-            //console.log(loggedInUser);
-            document.getElementById("target").innerHTML = "Your target is " + person.userName;
-            document.getElementById("getTarget").disabled = true;
-            //FIX THIS MAKE SURE IT RETURNS USER ARRAY
-            return person;
+            if (value.isAlive == true && value.isAssigned == false && value.email != loggedInUser.email) {
+                    userArray.push({"uid":key,"person":value});
+            }
         });
 
+        var selectedPerson = userArray[Math.floor(Math.random() * userArray.length)];
 
-}
+        //add assignment to person
+        firebase.database().ref('users/' + loggedInUser.uid).update({
+            target: selectedPerson.person.email
+        });
 
+        //update isAssigned on target
+        firebase.database().ref('users/' + selectedPerson.uid).update({
+            isAssigned: true
+        });
 
-function logInUser() {
-    var userEmail = document.getElementById("userEmail").value;
-    var pin = document.getElementById("pin").value;
+        $("#target").text("Your target is " + selectedPerson.person.name);
 
-    firebase.auth().signInWithEmailAndPassword(userEmail, pin);
-    firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-            // User is signed in.
-            loggedInUser = user;
-            firebase.database().ref('users/' + user.uid).on('value', function(snapshot) {
-                console.log(snapshot.val().email);
-                //doSomething(snapshot.val().email);
-
-            });
-        }
     });
+
+
 }
+
+
 
 function logOutUser() {
     firebase.auth().signOut().then(function() {
-        // Sign-out successful.
-        // Sign-out successful.
         console.log("Log Out: successful.");
-        alert("You are logged out now.");
-        return location.reload();
+        location.reload();
     }, function(error) {
         // An error happened.
     });
