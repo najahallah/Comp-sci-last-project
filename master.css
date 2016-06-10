@@ -25,6 +25,9 @@ td{
     text-align: center;
 }
 
+#mastertext{
+    font-family: serif;
+}
 /*Register page*/
 
 #register {
@@ -111,18 +114,14 @@ td{
 
 /*rules page*/
 
-#rules_h2 {font-family: monospace;
+h2 {font-family: monospace;
     font-size: 30px}
-
-#rules_h3 {font-family: monospace;
-    font-size: 20px}
-
-#rules_body {background-color: #ccccff;
-    font-family: sans-serif;
+#rules_body{
+    background-color: #cb99ea;
 }
-#signin_body {
-    background-color: #4CAF50;
-}
+/*#signin_body {*/
+    /*background-color: #4CAF50;*/
+/*}*/
 
 /*sign in page*/
 
