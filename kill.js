@@ -21,7 +21,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         });
     } else {
         // No user is signed in.
-        console.log('no user');*
+        console.log('no user');
         $('#currentUser').text("no user");
     }
 });
