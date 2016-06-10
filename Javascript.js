@@ -1,5 +1,4 @@
 // Initialize Firebase
-// Initialize Firebase
 var config = {
     apiKey: "AIzaSyDPVuZdO4O1SCO6qY1-_KYoF42f_1frUOE",
     authDomain: "assassin-a488d.firebaseapp.com",
@@ -57,13 +56,12 @@ function createUser() {
                 if(newUser) {
                     console.log("writing new user data")
                     firebase.database().ref('users/' + user.uid).set({
-                        name: name,
+                        userName: name,
                         email: user.email,
                         isAlive: true,
                         isAssigned: false,
                         pin: pin,
-                        targetName: "",
-                        targetEmail: ""
+                        target: ""
                     });
                 }
             });
@@ -91,7 +89,7 @@ function getTarget() {
         $.each(snapshot.val(), function (key, value) {
             //do whatever
             if (value.isAlive == true && value.isAssigned == false && value.email != loggedInUser.email) {
-                userArray.push({"uid":key,"person":value});
+                    userArray.push({"uid":key,"person":value});
             }
         });
 
@@ -99,8 +97,7 @@ function getTarget() {
 
         //add assignment to person
         firebase.database().ref('users/' + loggedInUser.uid).update({
-            targetName: selectedPerson.person.name,
-            targetEmail: selectedPerson.person.email
+            target: selectedPerson.person.email
         });
 
         //update isAssigned on target
@@ -108,50 +105,47 @@ function getTarget() {
             isAssigned: true
         });
 
-        $("#output").text("Your target is " + selectedPerson.person.name);
+        $("#target").text("Your target is " + selectedPerson.person.name);
 
     });
 
 
 }
 
-function resetAssignments() {
 
-    firebase.database().ref('users/').on('value', function (snapshot) {
-        $.each(snapshot.val(), function (key, value) {
-
-            firebase.database().ref('users/' + key).update({
-                targetName: "",
-                targetEmail: "",
-                isAssigned: false
-            });
-
-
-        });
-    });
-    logOutUser();
-    $("#output").text("All assignments reset");
-
-
-}
 
 function logOutUser() {
     firebase.auth().signOut().then(function() {
         console.log("Log Out: successful.");
-        $("#output").append("<br>User logged out");
-        //location.reload();
+        location.reload();
     }, function(error) {
         // An error happened.
     });
 }
 
+//function startGame(userArray){
+//    var targetArray = [];
+//
+//    for (i = 0; i < userArray.length; i++) {
+//        if(userArray.length >= 10) {
+//            var target = chooseRandomUser();
+//            targetArray.push(target);
+//        }
+//        else{
+//            alert("Please log in some other time. There are not enough Assassins present to eliminate.");
+//            break;
+//        }
+//    }
+//    console.log(userArray);
+//    console.log(targetArray);
+//}
 
 function writeTarget() {
-    var person = chooseRandomUser(userArray);
-    for (i = 0; i < userArray.length; i++) {
-        firebase.database().ref('users/' + loggedInUser.uid).set({
-            target: person.userEmail
-        });
+        var person = chooseRandomUser(userArray);
+        for (i = 0; i < userArray.length; i++) {
+            firebase.database().ref('users/' + loggedInUser.uid).set({
+                target: person.userEmail
+            });
 
-    }
+        }
 }

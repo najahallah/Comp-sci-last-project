@@ -5,15 +5,21 @@
     <title></title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
-    <script src="kill.js"></script>
-
     <link rel="stylesheet" type="text/css" href="master.css">
+    <script src="Javascript.js"></script>
 
     <script>
-        $(document).ready(function(){
-            $('#killButton').bind('click',killUser);
 
-        });
+    $(document).ready(function() {
+
+
+
+        firebase.database().ref('users/' +  )).on('value', function (snapshot) {
+            $('#userTarget').text(value.target);
+         });
+
+    });
+
     </script>
 
 </head>
@@ -24,16 +30,11 @@ Current user: <span id="currentUser"></span><br>
 
 <br><br>
 
-Your target name is: <span id="userTarget"></span>
+Your target is: <span id="userTarget"></span>
 
 <br><br>
 
-If you have killed your target, enter their PIN here:
-<br><br>
-<input type="text" id="inputPin" value="1234">
-<button id="killButton">Kill Dead!</button>
-<br><br>
-<div id="outcome"></div>
+Enter the PIN of the person you killed
 
 
 </body>
