@@ -6,7 +6,7 @@ var config = {
     apiKey: "AIzaSyDPVuZdO4O1SCO6qY1-_KYoF42f_1frUOE",
     authDomain: "assassin-a488d.firebaseapp.com",
     databaseURL: "https://assassin-a488d.firebaseio.com",
-    storageBucket: "assassin-a488d.appspot.com",
+    storageBucket: "assassin-a488d.appspot.com"
 };
 firebase.initializeApp(config);
 
@@ -21,7 +21,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         });
     } else {
         // No user is signed in.
-        console.log('no user');
+        console.log('no user');*
         $('#currentUser').text("no user");
     }
 });

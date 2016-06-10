@@ -1,32 +1,20 @@
-// Initialize Firebase
 var config = {
     apiKey: "AIzaSyDPVuZdO4O1SCO6qY1-_KYoF42f_1frUOE",
     authDomain: "assassin-a488d.firebaseapp.com",
     databaseURL: "https://assassin-a488d.firebaseio.com",
-    storageBucket: "assassin-a488d.appspot.com",
+    storageBucket: "assassin-a488d.appspot.com"
 };
 firebase.initializeApp(config);
 
-$(document).ready(function() {
-    loggedInUser = firebase.auth().currentUser;
-    if(loggedInUser != null) {
-        $('#currentUser').text(loggedInUser.email);
-    }
-    else {
-        $('#currentUser').text("no user");
-    }
-});
-
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
-        // User is signed in.
         loggedInUser = firebase.auth().currentUser;
         console.log(user.email);
-        $('#currentUser').text(user.email);
+        $('#output').text("Current User: " + user.email);
+        showTargetInfo();
     } else {
-        // No user is signed in.
-        console.log('no user')
-        $('#currentUser').text("no user");
+        console.log('no user');
+        $('#output').text("Current User: No User");
     }
 });
 
@@ -36,116 +24,129 @@ function createUser() {
     var name = $('#name').val();
     var pin = $('#pin').val();
 
-    firebase.auth().createUserWithEmailAndPassword(email,password).catch(function(error) {
-        console.log(error.code);
-        console.log(error.message);
-    });
-
-    firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-            firebase.database().ref('users/').on('value', function (snapshot) {
-                console.log(snapshot.val());
-                console.log(user.uid);
-                newUser = true;
-                $.each(snapshot.val(), function (key, value) {
-                    if (key == user.uid) {
-                        console.log("existing user");
-                        newUser = false;
-                    }
-                });
-                if(newUser) {
-                    console.log("writing new user data")
-                    firebase.database().ref('users/' + user.uid).set({
-                        userName: name,
-                        email: user.email,
-                        isAlive: true,
-                        isAssigned: false,
-                        pin: pin,
-                        target: ""
-                    });
-                }
-            });
-        }
+    firebase.auth().createUserWithEmailAndPassword(email,password).then(function(user) {
+        firebase.database().ref('users/' + user.uid).set({
+            name: name,
+            email: user.email,
+            isAlive: true,
+            isAssigned: false,
+            pin: pin,
+            targetName: "",
+            targetEmail: ""
+        });
     });
 }
 
 function logInUser() {
     var email = $('#email').val();
     var password = $('#password').val();
-
     firebase.auth().signInWithEmailAndPassword(email, password);
+}
 
-    firebase.auth().onAuthStateChanged(function(user) {
-        if (user) {
-            console.log(user.email);
+function determineTarget() {
+    firebase.database().ref('users/'  + loggedInUser.uid).once('value').then(function (snapshot) {
+        if(snapshot.val().targetName.length==0) {
+            assignTarget();
+        }
+        else {
+            $("#output").append("<br>Your target is already assigned: " + snapshot.val().targetName);
         }
     });
 }
 
-//grabs all users from the database and returns a random one
-function getTarget() {
+function assignTarget() {
     var userArray = [];
-    firebase.database().ref('users/').on('value', function (snapshot) {
+    firebase.database().ref('users/').once('value').then(function (snapshot) {
         $.each(snapshot.val(), function (key, value) {
-            //do whatever
             if (value.isAlive == true && value.isAssigned == false && value.email != loggedInUser.email) {
-                    userArray.push({"uid":key,"person":value});
+                userArray.push({"uid": key, "person": value});
             }
         });
-
-        var selectedPerson = userArray[Math.floor(Math.random() * userArray.length)];
-
-        //add assignment to person
-        firebase.database().ref('users/' + loggedInUser.uid).update({
-            target: selectedPerson.person.email
-        });
-
-        //update isAssigned on target
-        firebase.database().ref('users/' + selectedPerson.uid).update({
-            isAssigned: true
-        });
-
-        $("#target").text("Your target is " + selectedPerson.person.name);
-
+        if(userArray.length>0) {
+            var selectedTarget = userArray[Math.floor(Math.random() * userArray.length)];
+            updateUsers(selectedTarget);
+        }
+        else {
+            $("#output").append("<br>No more users available to assign.  Try again later");
+        }
     });
-
-
+}
+ 
+function updateUsers(selectedTarget) {
+    //add assignment to person
+    firebase.database().ref('users/' + loggedInUser.uid).update({
+        targetName: selectedTarget.person.name,
+        targetEmail: selectedTarget.person.email
+    });
+    //update isAssigned on target
+    firebase.database().ref('users/' + selectedTarget.uid).update({
+        isAssigned: true
+    });
+    $("#output").append("<br>Your target is: " + selectedTarget.person.name);
 }
 
-
+function resetAssignments() {
+    firebase.database().ref('users/').once('value').then(function (snapshot) {
+        $.each(snapshot.val(), function (key, value) {
+            firebase.database().ref('users/' + key).update({
+                targetName: "",
+                targetEmail: "",
+                isAssigned: false,
+                isAlive: true
+            });
+        });
+    });
+    $("#output").append("<br>All assignments reset");
+}
 
 function logOutUser() {
     firebase.auth().signOut().then(function() {
-        console.log("Log Out: successful.");
-        location.reload();
-    }, function(error) {
-        // An error happened.
+        $("#output").append("<br>User logged out");
     });
 }
 
-//function startGame(userArray){
-//    var targetArray = [];
-//
-//    for (i = 0; i < userArray.length; i++) {
-//        if(userArray.length >= 10) {
-//            var target = chooseRandomUser();
-//            targetArray.push(target);
-//        }
-//        else{
-//            alert("Please log in some other time. There are not enough Assassins present to eliminate.");
-//            break;
-//        }
-//    }
-//    console.log(userArray);
-//    console.log(targetArray);
-//}
-
-function writeTarget() {
-        var person = chooseRandomUser(userArray);
-        for (i = 0; i < userArray.length; i++) {
-            firebase.database().ref('users/' + loggedInUser.uid).set({
-                target: person.userEmail
-            });
-
+function killUser() {
+    var pin = $('#inputPin').val();
+    firebase.database().ref('users/' + loggedInUser.uid).once('value').then(function (snapshot) {
+        targetEmail = snapshot.val().targetEmail;
+        targetName = snapshot.val().targetName;
+    });
+    firebase.database().ref('users/').once('value').then(function (snapshot) {
+        var kill = false;
+        $.each(snapshot.val(), function (key, value) {
+            if (value.email == targetEmail && value.pin == pin) {
+                $('#output').append("<br>Congrats, you have killed " + targetName);
+                kill = true;
+                setKillVars(targetEmail);
+            }
+        });
+        if(!kill) {
+            $('#output').append("<br>Sorry, that is not the correct pin to kill " + targetName);
         }
+    });
 }
+
+function setKillVars(targetEmail) {
+    firebase.database().ref('users/' + loggedInUser.uid).update({
+        targetEmail: "",
+        targetName: ""
+    });
+    firebase.database().ref('users/').once('value').then(function (snapshot) {
+        $.each(snapshot.val(), function (key, value) {
+            if (value.email == targetEmail) {
+                firebase.database().ref('users/' + key).update({
+                    isAlive: false,
+                    isAssigned: false
+                });
+            }
+        });
+    });
+}
+
+function showTargetInfo() {
+    firebase.database().ref('users/'  + loggedInUser.uid).once('value').then(function (snapshot) {
+        var victim = snapshot.val().targetName || "No one assigned";
+        $("#output").append("<br>Your target is: " + victim);
+    });
+}
+

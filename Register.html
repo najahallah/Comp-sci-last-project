@@ -6,29 +6,31 @@
     <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
     <script src="Javascript.js"></script>
     <link rel="stylesheet" type="text/css" href="master.css">
-
     <title></title>
+    <script>
+        $(document).ready(function(){
+            $('#createUser').bind('click',createUser);
+        });
+    </script>
 </head>
-<table id="table">
-    <tr>
-        <td><a href="Orshi_file.html" id="menu">Home</a></td>
-        <td><a href="rules.html" id="menu">Rules</a></td>
-        <td><a href="newData_file.html" id="menu">Sign in</a></td>
-        <td><a href="Kills.html" id="menu">Kills</a></td>
-        <td><a href="contact_page.html" id="menu">Contact</a></td>
-    </tr>
-</table>
-
 <body id="firebase_body">
-<p></p>
-Current user: <span id="currentUser"></span><br>
+    <table id="table">
+        <tr>
+            <td><a href="Orshi_file.html" id="menu">Home</a></td>
+            <td><a href="rules.html" id="menu">Rules</a></td>
+            <td><a href="newData_file.html" id="menu">Sign in</a></td>
+            <td><a href="Kills.html" id="menu">Kills</a></td>
+            <td><a href="contact_page.html" id="menu">Contact</a></td>
+        </tr>
+    </table>
+
 user email: <input type="text" id="email" value="x@x.com"><br>
 user password: <input type="password" id="password" value="password"><br>
-<br><br>
+<br>
 Your Name: <input type="text" id="name" value="x"><br>
-Set a 4 digit Pin: <input type="text" id="pin" value="12345678"><br>
+Set a 4 digit Pin: <input type="text" id="pin" value="1234"><br>
 
-<button onClick="createUser()">Create</button>
+<button id="createUser">Create</button>
 <p id="success_user"></p>
 <p id="fail_user"></p>
 <div id="output"></div>

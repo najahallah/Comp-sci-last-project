@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <script type="text/javascript" src="Home_menu.js"></script>
     <link rel="stylesheet" type="text/css" href="master.css">
+    <script src="kill.js"></script>
     <table id="table">
         <tr>
             <td><a href="Orshi_file.html" id="menu">Home</a></td>
@@ -19,18 +20,31 @@
 <h1 id="kills_title">Your Kills</h1>
 <p id="kills_sub-title">Type in your target's pincode and name after you have "assassinated" them.</p>
 
-<form action="http://localhost:63342/Comp-sci-last-project/dude.html" id="kills_form">
-<form action="http://localhost:63342/Comp-sci-last-project/After someone has been killed.html" id="kills_form">
-<form action="http://localhost:63342/Comp-sci-last-project/After someone has been killed.html" id="kills_form">
-    First name:<br>
-    <input type="text" value=" "><br>
-    Your PIN number:<br>
-    <input type="number" name="quantity" min="1000" max="9999"><br>
-    Victim's first name:<br>
-    <input type="text" name="targetfn" value=" "><br>
-    Victim's PIN number:<br>
-    <input  id="unique" type="number" name="quantity" min="1000" max="9999"><br>
-    <input type="submit"value="Submit">
+<!--<form action="http://localhost:63342/Comp-sci-last-project/dude.html" id="kills_form">-->
+<!--<form action="http://localhost:63342/Comp-sci-last-project/After someone has been killed.html" id="kills_form">-->
+<!--<form action="http://localhost:63342/Comp-sci-last-project/After someone has been killed.html" id="kills_form">-->
+    <!--First name:<br>-->
+    <!--<input type="text" value=" "><br>-->
+    <!--Your PIN number:<br>-->
+    <!--<input type="number" name="quantity" min="1000" max="9999"><br>-->
+    <!--Victim's first name:<br>-->
+    <!--<input type="text" name="targetfn" value=" "><br>-->
+    <!--Victim's PIN number:<br>-->
+    <!--<input  id="unique" type="number" name="quantity" min="1000" max="9999"><br>-->
+    <!--<input type="submit"value="Submit">-->
+
+<body id="firebase_body">
+<p></p>
+Current user: <span id="currentUser"></span><br>
+email: <input type="text" id="email" ><br>
+password: <input type="password" id="password" value="password"><br>
+<button id="logInUser">Log In</button>
+<button id="logOutUser">Log Out</button>
+<button id="getTarget">Get Target</button>
+
+<div id="output"></div>
+<p id="target"></p>
+
 </form>
 </body>
 </html>

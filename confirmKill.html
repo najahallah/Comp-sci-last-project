@@ -8,33 +8,29 @@
     <link rel="stylesheet" type="text/css" href="master.css">
     <script src="Javascript.js"></script>
 
+    <link rel="stylesheet" type="text/css" href="master.css">
+
     <script>
-
-    $(document).ready(function() {
-
-
-
-        firebase.database().ref('users/' +  )).on('value', function (snapshot) {
-            $('#userTarget').text(value.target);
-         });
-
-    });
-
+        $(document).ready(function(){
+            $('#killButton').bind('click',killUser);
+            $('#nextVictim').bind('click',determineTarget);
+        });
     </script>
 
 </head>
 
 <body>
 
-Current user: <span id="currentUser"></span><br>
 
 <br><br>
 
-Your target is: <span id="userTarget"></span>
-
+If you have killed your target, enter their PIN here:
 <br><br>
-
-Enter the PIN of the person you killed
+<input type="text" id="inputPin" value="1234">
+<button id="killButton">Kill Dead!</button>
+<button id="nextVictim">Get Next Victim</button>
+<br><br>
+<div id="output"></div>
 
 
 </body>
