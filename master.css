@@ -3,6 +3,7 @@
 #table {
     margin: auto;
     background-color: white;
+    position: fixed;
 }
 table a {
     display: block;
