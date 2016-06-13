@@ -217,8 +217,10 @@ h2 {font-family: monospace;
 
 /*User info*/
 #output{
-    font-family: "Marlett";
+    text-align: center;
+    font-family: "Palatino Linotype";
     font-size: 16px;
     color: black;
-    text-align: center;
+    font-weight: bold
+
 }
