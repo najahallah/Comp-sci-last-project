@@ -220,3 +220,11 @@ h2 {font-family: monospace;
 #firebase_body {
     background-color: #0099ff;
 }
+
+/*User info*/
+#output{
+    font-family: "Marlett";
+    font-size: 16px;
+    color: black;
+    text-align: center;
+}
