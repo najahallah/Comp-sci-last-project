@@ -216,6 +216,11 @@ h2 {font-family: monospace;
     background-color: #0099ff;
 }
 
+#cake{
+    text-align: center;
+
+}
+
 /*User info*/
 #output{
     text-align: center;
@@ -223,5 +228,61 @@ h2 {font-family: monospace;
     font-size: 16px;
     color: black;
     font-weight: bold
+
+}
+
+#email{
+    font-family: "Palatino Linotype";
+    font-size: 16px;
+    color: black;
+    font-weight: bold
+}
+
+#password{
+    font-family: "Palatino Linotype";
+    font-size: 16px;
+    color: black;
+    font-weight: bold
+
+}
+
+#logInUser{
+    background-color: #af000d; /* red */
+    border-style: solid;
+    border-color: #420666;
+    border-radius: 9px;
+    color: white;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+#logOutUser{
+    background-color: #af000d; /* red */
+    border-style: solid;
+    border-color: #420666;
+    border-radius: 9px;
+    color: white;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+
+}
+
+#getTarget{
+    background-color: #af000d; /* red */
+    border-style: solid;
+    border-color: #420666;
+    border-radius: 9px;
+    color: white;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
 
 }
