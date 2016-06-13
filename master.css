@@ -3,7 +3,7 @@
 #table {
     margin: auto;
     background-color: white;
-    position: fixed;
+    
 }
 table a {
     display: block;
@@ -32,8 +32,12 @@ td{
 /*Register page*/
 
 #register {
-    background-color: #ffc0cb;
+    font-size: 26px;
+    text-align: center;
+    position: relative;
+    margin-top: 100px;
 }
+
 
 /*Kills page*/
 
