@@ -3,9 +3,6 @@
 #table {
     margin: auto;
     background-color: white;
-    position: fixed;
-
-    
 }
 table a {
     display: block;
@@ -38,10 +35,7 @@ h2 {font-family: monospace;
 #rules_body{
     background-color: #cb99ea;
 }
-#rules_header{
-    position: static;
-    margin: 100px;
-}
+
 /*Register page*/
 
 #register {
