@@ -67,7 +67,7 @@ function assignTarget() {
             updateUsers(selectedTarget);
         }
         else {
-            $("#output").append("<br>No more users available to assign.  Try again later");
+            $("#output").append("<br>No more users available to assign.<br>Congrats. You WON!<br>");
         }
     });
 }
